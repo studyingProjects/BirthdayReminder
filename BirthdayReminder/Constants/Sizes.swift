@@ -14,8 +14,7 @@ enum Sizes {
         static let height: CGFloat = 44
         static let cornerRadius: CGFloat = 10
 
-        static let fontSize: CGFloat = 14
-        static let fonrWeight: UIFont.Weight = .regular
+        static let borderWidth = 1
     }
 
     enum Medium {
@@ -24,8 +23,7 @@ enum Sizes {
         static let height: CGFloat = 88
         static let cornerRadius: CGFloat = 20
 
-        static let fontSize: CGFloat = 22
-        static let fontWeight: UIFont.Weight = .medium
+        static let borderWidth = 3
     }
 
     enum Large {
@@ -34,8 +32,7 @@ enum Sizes {
         static let height: CGFloat = 176
         static let cornerRadius: CGFloat = 30
 
-        static let fontSize: CGFloat = 42
-        static let fontWeight: UIFont.Weight = .semibold
+        static let borderWidth = 6
     }
 
     enum XLarge {
@@ -44,7 +41,6 @@ enum Sizes {
         static let height: CGFloat = 352
         static let cornerRadius: CGFloat = 40
 
-        static let fontSize: CGFloat = 56
-        static let fontWeight: UIFont.Weight = .bold
+        static let borderWidth = 9
     }
 }
