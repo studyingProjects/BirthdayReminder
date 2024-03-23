@@ -9,6 +9,8 @@ import UIKit
 
 class LoginView: UIView {
     // MARK: - Properties
+    weak var delegate: LoginViewDelegate?
+
     private lazy var appTitleLabel = UILabel(
         text: "Birthday Reminder",
         font: .appLargeFont,
@@ -45,7 +47,7 @@ class LoginView: UIView {
         color: .systemGray,
         aligment: .right
     )
-    
+
     private lazy var signInButton = UIButton(
         title: "Sign In",
         font: .appLargeFont,
@@ -83,6 +85,15 @@ class LoginView: UIView {
             faceIdLabel,
             signInButton
         )
+        // Setup targets
+        signInButton.addTarget(self, action: #selector(passToProfilesList), for: .touchUpInside)
+    }
+}
+// MARK: - Action methods
+private extension LoginView {
+    @objc
+    func passToProfilesList(_ sender: UIButton) {
+        delegate?.passToEditProfile(sender)
     }
 }
 // MARK: - Constraints

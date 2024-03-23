@@ -7,10 +7,11 @@
 
 import UIKit
 
-protocol Coordinator {
+protocol Coordinator: AnyObject {
     var navigationController: UINavigationController { get set }
 
     func start()
+    func passToEditProfileScreen()
 }
 
 class MainCoordinator: Coordinator {
@@ -21,7 +22,14 @@ class MainCoordinator: Coordinator {
     }
 
     func start() {
-        let loginVC = LoginViewController()
-        navigationController.pushViewController(loginVC, animated: false)
+        let viewController = LoginViewController()
+        viewController.coordinator = self
+        navigationController.pushViewController(viewController, animated: false)
+    }
+
+    func passToEditProfileScreen() {
+        let viewController = EditProfileViewController()
+        viewController.coordinator = self
+        navigationController.pushViewController(viewController, animated: true)
     }
 }
