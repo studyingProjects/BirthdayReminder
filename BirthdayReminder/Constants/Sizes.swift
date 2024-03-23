@@ -29,7 +29,7 @@ enum Sizes {
     enum Large {
         static let padding: CGFloat = 32
         static let width: CGFloat = 200
-        static let height: CGFloat = 176
+        static let height: CGFloat = 136
         static let cornerRadius: CGFloat = 30
 
         static let borderWidth: CGFloat = 6

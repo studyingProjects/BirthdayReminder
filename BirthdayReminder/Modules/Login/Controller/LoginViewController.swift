@@ -32,13 +32,3 @@ extension LoginViewController: LoginViewDelegate {
         coordinator?.passToEditProfileScreen()
     }
 }
-
-import SwiftUI
-struct ViewControllerProvider: PreviewProvider {
-    static var previews: some View {
-        Group {
-            // change to your vc
-            LoginViewController().preview()
-        }
-    }
-}
