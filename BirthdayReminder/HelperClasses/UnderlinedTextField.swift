@@ -31,6 +31,6 @@ class UnderlinedTextField: UITextField {
         frame.size.height = 1
 
         underlineLayer.frame = frame
-        underlineLayer.backgroundColor = UIColor.gray.cgColor
+        underlineLayer.backgroundColor = UIColor.systemGray3.cgColor
     }
 }

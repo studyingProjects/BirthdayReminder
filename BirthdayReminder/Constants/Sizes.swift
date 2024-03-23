@@ -14,7 +14,7 @@ enum Sizes {
         static let height: CGFloat = 44
         static let cornerRadius: CGFloat = 10
 
-        static let borderWidth = 1
+        static let borderWidth: CGFloat = 1
     }
 
     enum Medium {
@@ -23,7 +23,7 @@ enum Sizes {
         static let height: CGFloat = 88
         static let cornerRadius: CGFloat = 20
 
-        static let borderWidth = 3
+        static let borderWidth: CGFloat = 3
     }
 
     enum Large {
@@ -32,7 +32,7 @@ enum Sizes {
         static let height: CGFloat = 176
         static let cornerRadius: CGFloat = 30
 
-        static let borderWidth = 6
+        static let borderWidth: CGFloat = 6
     }
 
     enum XLarge {
@@ -41,6 +41,6 @@ enum Sizes {
         static let height: CGFloat = 352
         static let cornerRadius: CGFloat = 40
 
-        static let borderWidth = 9
+        static let borderWidth: CGFloat = 9
     }
 }

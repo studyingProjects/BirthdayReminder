@@ -9,11 +9,13 @@ import UIKit
 
 extension UILabel {
     convenience init(
-        text: String? = "",
+        text: String,
         font: UIFont,
         color: UIColor,
+        aligment: NSTextAlignment = .natural,
         borderColor: UIColor? = nil,
-        borderWidth: CGFloat = 0
+        borderWidth: CGFloat = 0,
+        cornerRadius: CGFloat = 0
     ) {
         self.init(frame: .zero)
         self.text = text
@@ -21,9 +23,20 @@ extension UILabel {
         self.textColor = color
         self.layer.borderColor = borderColor?.cgColor
         self.layer.borderWidth = borderWidth
+        self.textAlignment = aligment
+        self.layer.cornerRadius = cornerRadius
         // test
         // self.numberOfLines = 0
-        // self.adjustsFontSizeToFitWidth = true
-        // self.minimumScaleFactor = 0.5
+        self.adjustsFontSizeToFitWidth = true
+        self.minimumScaleFactor = 0.5
+    }
+
+    convenience init(
+        text: String? = ""
+    ) {
+        self.init(frame: .zero)
+        self.text = text
+        self.font = UIFont.appMediumFont
+        self.textColor = UIColor.appLabel
     }
 }

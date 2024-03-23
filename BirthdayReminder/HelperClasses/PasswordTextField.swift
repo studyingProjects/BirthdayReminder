@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PasswordTextField: UITextField {
+class PasswordTextField: UnderlinedTextField {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
@@ -39,5 +39,6 @@ class PasswordTextField: UITextField {
     @objc
     private func hideShowButtonPressed(_ sender: UIButton) {
         self.isSecureTextEntry = !self.isSecureTextEntry
+        sender.isSelected = !sender.isSelected
     }
 }
