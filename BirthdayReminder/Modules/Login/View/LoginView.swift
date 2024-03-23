@@ -94,8 +94,6 @@ private extension LoginView {
     }
 
     private func setupHeader() {
-        let heighConstraint = appTitleLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: Sizes.Small.height)
-        heighConstraint.priority = .defaultLow
         NSLayoutConstraint.activate([
             appTitleLabel.leadingAnchor.constraint(
                 equalTo: layoutMarginsGuide.leadingAnchor,
@@ -111,6 +109,7 @@ private extension LoginView {
             ),
             appTitleLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: Sizes.Medium.height)
         ])
+        appTitleLabel.setContentHuggingPriority(.defaultLow, for: .vertical)
     }
 
     private func setupLogin() {
@@ -172,13 +171,13 @@ private extension LoginView {
             signInButton.leadingAnchor.constraint(equalTo: appTitleLabel.leadingAnchor),
             signInButton.trailingAnchor.constraint(equalTo: appTitleLabel.trailingAnchor),
             signInButton.topAnchor.constraint(
-                greaterThanOrEqualTo: faceIdLabel.bottomAnchor,
-                constant: Sizes.Large.padding
+                equalTo: faceIdLabel.bottomAnchor,
+                constant: Sizes.XLarge.padding
             ),
             signInButton.heightAnchor.constraint(greaterThanOrEqualToConstant: Sizes.Small.height),
             signInButton.bottomAnchor.constraint(
                 equalTo: safeAreaLayoutGuide.bottomAnchor,
-                constant: -Sizes.Large.padding
+                constant: -Sizes.XLarge.padding
             )
         ])
     }
