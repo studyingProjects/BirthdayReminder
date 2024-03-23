@@ -45,8 +45,16 @@ class LoginView: UIView {
         color: .systemGray,
         aligment: .right
     )
+    
+    private lazy var signInButton = UIButton(
+        title: "Sign In",
+        font: .appLargeFont,
+        titleColor: .white,
+        backGroundColor: .appButton,
+        cornerRadius: Sizes.Small.cornerRadius
+    )
 
-    // MARK: - LifeCycle
+    // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
 
@@ -72,7 +80,8 @@ class LoginView: UIView {
             passwordLabel,
             passwordTextField,
             faceIdSwitcher,
-            faceIdLabel
+            faceIdLabel,
+            signInButton
         )
     }
 }
@@ -85,6 +94,8 @@ private extension LoginView {
     }
 
     private func setupHeader() {
+        let heighConstraint = appTitleLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: Sizes.Small.height)
+        heighConstraint.priority = .defaultLow
         NSLayoutConstraint.activate([
             appTitleLabel.leadingAnchor.constraint(
                 equalTo: layoutMarginsGuide.leadingAnchor,
@@ -98,7 +109,7 @@ private extension LoginView {
                 equalTo: safeAreaLayoutGuide.topAnchor,
                 constant: Sizes.Small.padding
             ),
-            appTitleLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: Sizes.Small.height)
+            appTitleLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: Sizes.Medium.height)
         ])
     }
 
@@ -126,7 +137,7 @@ private extension LoginView {
             emailTextField.leadingAnchor.constraint(equalTo: emailLabel.leadingAnchor),
             emailTextField.trailingAnchor.constraint(equalTo: emailLabel.trailingAnchor),
             emailTextField.topAnchor.constraint(equalTo: emailLabel.bottomAnchor),
-            emailTextField.heightAnchor.constraint(greaterThanOrEqualToConstant: Sizes.Small.height),
+            emailTextField.heightAnchor.constraint(equalToConstant: Sizes.Small.height),
 
             passwordLabel.leadingAnchor.constraint(equalTo: emailLabel.leadingAnchor),
             passwordLabel.trailingAnchor.constraint(equalTo: emailLabel.trailingAnchor),
@@ -137,7 +148,7 @@ private extension LoginView {
             passwordTextField.leadingAnchor.constraint(equalTo: passwordLabel.leadingAnchor),
             passwordTextField.trailingAnchor.constraint(equalTo: passwordLabel.trailingAnchor),
             passwordTextField.topAnchor.constraint(equalTo: passwordLabel.bottomAnchor),
-            passwordTextField.heightAnchor.constraint(greaterThanOrEqualToConstant: Sizes.Small.height),
+            passwordTextField.heightAnchor.constraint(equalToConstant: Sizes.Small.height),
 
             faceIdSwitcher.trailingAnchor.constraint(
                 equalTo: passwordTextField.trailingAnchor,
@@ -156,5 +167,19 @@ private extension LoginView {
         ])
     }
 
-    private func setupBottom() {}
+    private func setupBottom() {
+        NSLayoutConstraint.activate([
+            signInButton.leadingAnchor.constraint(equalTo: appTitleLabel.leadingAnchor),
+            signInButton.trailingAnchor.constraint(equalTo: appTitleLabel.trailingAnchor),
+            signInButton.topAnchor.constraint(
+                greaterThanOrEqualTo: faceIdLabel.bottomAnchor,
+                constant: Sizes.Large.padding
+            ),
+            signInButton.heightAnchor.constraint(greaterThanOrEqualToConstant: Sizes.Small.height),
+            signInButton.bottomAnchor.constraint(
+                equalTo: safeAreaLayoutGuide.bottomAnchor,
+                constant: -Sizes.Large.padding
+            )
+        ])
+    }
 }
