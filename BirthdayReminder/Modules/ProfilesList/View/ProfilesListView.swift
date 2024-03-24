@@ -31,7 +31,6 @@ class ProfilesListView: UIView {
         aligment: .right
     )
     // Second hard view
-    // private lazy var secondProfileView = UnderlinedView(frame: .zero)
     private lazy var secondProfileView = UnderlinedView(frame: .zero)
     private lazy var secondProfileImageView = UIImageView.getProfileImageView()
     private lazy var secondNameLabel = UILabel(
@@ -53,7 +52,26 @@ class ProfilesListView: UIView {
         aligment: .right
     )
     // Third hard view
-    // private lazy var thirdProfileView = UnderlinedView(frame: .zero)
+    private lazy var thirdProfileView = UnderlinedView(frame: .zero)
+    private lazy var thirdProfileImageView = UIImageView.getProfileImageView()
+    private lazy var thirdNameLabel = UILabel(
+        text: "Jony Stark",
+        font: .appMediumFont,
+        color: .black,
+        aligment: .left
+    )
+    private lazy var thirdBirthdayDescriptionLabel = UILabel(
+        text: "Saturday, April 25 will be the 25th birthday",
+        font: .appMediumFont,
+        color: .systemGray2,
+        aligment: .left
+    )
+    private lazy var thirdDaysRemainingLabel = UILabel(
+        text: "53 days",
+        font: .appMediumFont,
+        color: .systemGray2,
+        aligment: .right
+    )
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -73,8 +91,7 @@ class ProfilesListView: UIView {
     }
 
     private func setupSubViews() {
-        addSubviews(firstProfileView)
-        addSubviews(secondProfileView)
+        addSubviews(firstProfileView, secondProfileView, thirdProfileView)
 
         firstProfileView.addSubviews(
             firstProfileImageView,
@@ -89,6 +106,13 @@ class ProfilesListView: UIView {
             secondBirthdayDescriptionLabel,
             secondDaysRemainingLabel
         )
+
+        thirdProfileView.addSubviews(
+            thirdProfileImageView,
+            thirdNameLabel,
+            thirdBirthdayDescriptionLabel,
+            thirdDaysRemainingLabel
+        )
     }
 }
 
@@ -97,6 +121,7 @@ private extension ProfilesListView {
     private func setupConstraints() {
         setupMainProfileViews()
         setupSecondProfileViews()
+        setupThirdProfileViews()
 
         setupPriorities()
     }
@@ -214,9 +239,67 @@ private extension ProfilesListView {
             secondDaysRemainingLabel.topAnchor.constraint(equalTo: secondNameLabel.topAnchor)
         ])
     }
+    // MARK: - Third View
+    private func setupThirdProfileViews() {
+        NSLayoutConstraint.activate([
+            thirdProfileView.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
+            thirdProfileView.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
+            thirdProfileView.topAnchor.constraint(
+                equalTo: secondProfileView.bottomAnchor,
+                constant: Sizes.Small.padding
+            ),
+            thirdProfileView.heightAnchor.constraint(greaterThanOrEqualToConstant: Sizes.Medium.height),
+            // Profile image
+            thirdProfileImageView.leadingAnchor.constraint(equalTo: thirdProfileView.leadingAnchor),
+            thirdProfileImageView.centerYAnchor.constraint(equalTo: thirdProfileView.centerYAnchor),
+            thirdProfileImageView.heightAnchor.constraint(
+                equalTo: thirdProfileView.heightAnchor,
+                multiplier: Sizes.Large.multiplier
+            ),
+            thirdProfileImageView.widthAnchor.constraint(
+                equalTo: thirdProfileView.widthAnchor,
+                multiplier: Sizes.Small.multiplier
+            ),
+            // Name title
+            thirdNameLabel.leadingAnchor.constraint(
+                equalTo: thirdProfileImageView.trailingAnchor
+            ),
+            thirdNameLabel.topAnchor.constraint(
+                equalTo: thirdProfileView.topAnchor,
+                constant: Sizes.XSmall.padding
+            ),
+            // Birthday description
+            thirdBirthdayDescriptionLabel.leadingAnchor.constraint(
+                equalTo: thirdProfileImageView.trailingAnchor
+            ),
+            thirdBirthdayDescriptionLabel.trailingAnchor.constraint(
+                equalTo: thirdProfileView.trailingAnchor,
+                constant: -Sizes.XSmall.padding
+            ),
+            thirdBirthdayDescriptionLabel.topAnchor.constraint(
+                equalTo: thirdNameLabel.bottomAnchor,
+                constant: Sizes.XSmall.padding
+            ),
+            thirdBirthdayDescriptionLabel.bottomAnchor.constraint(
+                equalTo: thirdProfileImageView.bottomAnchor,
+                constant: -Sizes.XSmall.padding
+            ),
+            // Day remaining
+            thirdDaysRemainingLabel.leadingAnchor.constraint(
+                equalTo: thirdNameLabel.trailingAnchor,
+                constant: Sizes.XSmall.padding
+            ),
+            thirdDaysRemainingLabel.trailingAnchor.constraint(
+                equalTo: thirdProfileView.trailingAnchor,
+                constant: -Sizes.Small.padding
+            ),
+            thirdDaysRemainingLabel.topAnchor.constraint(equalTo: thirdNameLabel.topAnchor)
+        ])
+    }
 
     private func setupPriorities() {
         daysRemainingLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         secondDaysRemainingLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        thirdDaysRemainingLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
     }
 }
