@@ -12,6 +12,7 @@ protocol Coordinator: AnyObject {
 
     func start()
     func passToEditProfileScreen()
+    func passToProfilesList()
 }
 
 class MainCoordinator: Coordinator {
@@ -25,6 +26,12 @@ class MainCoordinator: Coordinator {
         let viewController = LoginViewController()
         viewController.coordinator = self
         navigationController.pushViewController(viewController, animated: false)
+    }
+
+    func passToProfilesList() {
+        let viewController = ProfilesListViewController()
+        viewController.coordinator = self
+        navigationController.pushViewController(viewController, animated: true)
     }
 
     func passToEditProfileScreen() {

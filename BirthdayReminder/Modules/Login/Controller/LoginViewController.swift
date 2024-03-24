@@ -8,7 +8,7 @@
 import UIKit
 
 protocol LoginViewDelegate: AnyObject {
-    func passToEditProfile(_ sender: UIButton)
+    func passToProfilesList(_ sender: UIButton)
 }
 
 class LoginViewController: UIViewController {
@@ -28,7 +28,7 @@ class LoginViewController: UIViewController {
 }
 // MARK: - Delegation
 extension LoginViewController: LoginViewDelegate {
-    func passToEditProfile(_ sender: UIButton) {
-        coordinator?.passToEditProfileScreen()
+    func passToProfilesList(_ sender: UIButton) {
+        coordinator?.passToProfilesList()
     }
 }

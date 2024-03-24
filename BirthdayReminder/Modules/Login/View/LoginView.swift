@@ -93,7 +93,7 @@ class LoginView: UIView {
 private extension LoginView {
     @objc
     func passToProfilesList(_ sender: UIButton) {
-        delegate?.passToEditProfile(sender)
+        delegate?.passToProfilesList(sender)
     }
 }
 // MARK: - Constraints
