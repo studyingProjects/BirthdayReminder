@@ -12,19 +12,22 @@ class ProfilesListView: UIView {
     private lazy var firstProfileView = UnderlinedView(frame: .zero)
     private lazy var firstProfileImageView = UIImageView.getProfileImageView()
     private lazy var firstNameLabel = UILabel(
-        text: "Jeremy",
+        text: "Jeremy Clarcson",
         font: .appMediumFont,
-        color: .blue
+        color: .black,
+        aligment: .left
     )
     private lazy var birthdayDescriptionLabel = UILabel(
-        text: "Wednesday, March 10 will mark the 25th birthday",
-        font: .appSmallFont,
-        color: .systemGray2
+        text: "Wednesday, March 10 will be the 25th birthday",
+        font: .appMediumFont,
+        color: .systemGray2,
+        aligment: .left
     )
     private lazy var daysRemainingLabel = UILabel(
         text: "18 days",
         font: .appMediumFont,
-        color: .systemGray2
+        color: .systemGray2,
+        aligment: .right
     )
 
     // private lazy var secondProfileView = UnderlinedView(frame: .zero)
@@ -49,7 +52,12 @@ class ProfilesListView: UIView {
 
     private func setupSubViews() {
         addSubviews(firstProfileView)
-        // firstProfileView.addSubviews(firstNameLabel)
+        firstProfileView.addSubviews(
+            firstProfileImageView,
+            firstNameLabel,
+            birthdayDescriptionLabel,
+            daysRemainingLabel
+        )
     }
 }
 
@@ -67,14 +75,53 @@ private extension ProfilesListView {
                 equalTo: safeAreaLayoutGuide.topAnchor,
                 constant: Sizes.Small.padding
             ),
-            firstProfileView.heightAnchor.constraint(greaterThanOrEqualToConstant: Sizes.Medium.height)
+            firstProfileView.heightAnchor.constraint(greaterThanOrEqualToConstant: Sizes.Medium.height),
+            // Profile image
+            firstProfileImageView.leadingAnchor.constraint(equalTo: firstProfileView.leadingAnchor),
+            firstProfileImageView.centerYAnchor.constraint(equalTo: firstProfileView.centerYAnchor),
+            firstProfileImageView.heightAnchor.constraint(
+                equalTo: firstProfileView.heightAnchor,
+                multiplier: Sizes.Large.multiplier
+            ),
+            firstProfileImageView.widthAnchor.constraint(
+                equalTo: firstProfileView.widthAnchor,
+                multiplier: Sizes.Small.multiplier
+            ),
+            // Name title
+            firstNameLabel.leadingAnchor.constraint(
+                equalTo: firstProfileImageView.trailingAnchor
+            ),
+            firstNameLabel.topAnchor.constraint(
+                equalTo: firstProfileView.topAnchor,
+                constant: Sizes.XSmall.padding
+            ),
+            // Birthday description
+            birthdayDescriptionLabel.leadingAnchor.constraint(
+                equalTo: firstProfileImageView.trailingAnchor
+            ),
+            birthdayDescriptionLabel.trailingAnchor.constraint(
+                equalTo: firstProfileView.trailingAnchor,
+                constant: -Sizes.XSmall.padding
+            ),
+            birthdayDescriptionLabel.topAnchor.constraint(
+                equalTo: firstNameLabel.bottomAnchor,
+                constant: Sizes.XSmall.padding
+            ),
+            birthdayDescriptionLabel.bottomAnchor.constraint(
+                equalTo: firstProfileImageView.bottomAnchor,
+                constant: -Sizes.XSmall.padding
+            ),
+            // Day remaining
+            daysRemainingLabel.leadingAnchor.constraint(
+                equalTo: firstNameLabel.trailingAnchor,
+                constant: Sizes.XSmall.padding
+            ),
+            daysRemainingLabel.trailingAnchor.constraint(
+                equalTo: firstProfileView.trailingAnchor,
+                constant: -Sizes.Small.padding
+            ),
+            daysRemainingLabel.topAnchor.constraint(equalTo: firstNameLabel.topAnchor)
         ])
+        daysRemainingLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
     }
-
-    private func setupProfileSubViews(
-        _ profileView: UIView,
-        with nameView: UIView,
-        and descriptionView: UIView,
-        and daysRemainingView: UIView
-    ) {}
 }

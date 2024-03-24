@@ -8,6 +8,16 @@
 import UIKit
 
 enum Sizes {
+    enum XSmall {
+        static let padding: CGFloat = 4
+        static let width: CGFloat = 40
+        static let height: CGFloat = 35
+        static let cornerRadius: CGFloat = 5
+
+        static let borderWidth: CGFloat = 0.5
+        static let multiplier: CGFloat = 0.15
+    }
+    
     enum Small {
         static let padding: CGFloat = 8
         static let width: CGFloat = 50
@@ -15,6 +25,7 @@ enum Sizes {
         static let cornerRadius: CGFloat = 10
 
         static let borderWidth: CGFloat = 1
+        static let multiplier: CGFloat = 0.25
     }
 
     enum Medium {
@@ -24,6 +35,7 @@ enum Sizes {
         static let cornerRadius: CGFloat = 20
 
         static let borderWidth: CGFloat = 3
+        static let multiplier: CGFloat = 0.5
     }
 
     enum Large {
@@ -33,6 +45,7 @@ enum Sizes {
         static let cornerRadius: CGFloat = 30
 
         static let borderWidth: CGFloat = 6
+        static let multiplier: CGFloat = 0.9
     }
 
     enum XLarge {
@@ -42,5 +55,6 @@ enum Sizes {
         static let cornerRadius: CGFloat = 40
 
         static let borderWidth: CGFloat = 9
+        static let multiplier: CGFloat = 0.95
     }
 }

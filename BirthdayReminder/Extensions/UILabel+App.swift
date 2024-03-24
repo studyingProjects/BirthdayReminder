@@ -26,7 +26,7 @@ extension UILabel {
         self.textAlignment = aligment
         self.layer.cornerRadius = cornerRadius
         // test
-        // self.numberOfLines = 0
+        self.numberOfLines = 0
         self.adjustsFontSizeToFitWidth = true
         self.minimumScaleFactor = 0.5
     }
