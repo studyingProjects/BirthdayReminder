@@ -17,7 +17,7 @@ enum Sizes {
         static let borderWidth: CGFloat = 0.5
         static let multiplier: CGFloat = 0.15
     }
-    
+
     enum Small {
         static let padding: CGFloat = 8
         static let width: CGFloat = 50
