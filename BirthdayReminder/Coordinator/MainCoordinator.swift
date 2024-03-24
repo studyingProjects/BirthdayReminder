@@ -11,8 +11,8 @@ protocol Coordinator: AnyObject {
     var navigationController: UINavigationController { get set }
 
     func start()
-    func passToEditProfileScreen()
     func passToProfilesList()
+    func passToEditProfileScreen()
 }
 
 class MainCoordinator: Coordinator {
@@ -37,6 +37,6 @@ class MainCoordinator: Coordinator {
     func passToEditProfileScreen() {
         let viewController = EditProfileViewController()
         viewController.coordinator = self
-        navigationController.pushViewController(viewController, animated: true)
+        navigationController.present(viewController, animated: true)
     }
 }

@@ -25,6 +25,12 @@ class LoginViewController: UIViewController {
 
         loginView.delegate = self
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        navigationController?.navigationBar.backgroundColor = .none
+    }
 }
 // MARK: - Delegation
 extension LoginViewController: LoginViewDelegate {

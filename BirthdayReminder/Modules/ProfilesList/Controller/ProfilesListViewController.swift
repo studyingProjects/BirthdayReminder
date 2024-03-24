@@ -21,12 +21,35 @@ class ProfilesListViewController: UIViewController {
     override func loadView() {
         view = profileListView
     }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        title = "Birthday"
+
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            barButtonSystemItem: .add,
+            target: self,
+            action: #selector(addTapped)
+        )
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        navigationController?.navigationBar.backgroundColor = .systemGray5
+    }
+
+    @objc
+    private func addTapped() {
+        coordinator?.passToEditProfileScreen()
+    }
 }
 
 // MARK: - Delegation
 extension ProfilesListViewController: ProfilesListViewDelegate {
     func passToEditProfile(_ sender: UIButton) {
-        coordinator?.passToEditProfileScreen()
+        // coordinator?.passToEditProfileScreen()
     }
 }
 
