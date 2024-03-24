@@ -9,6 +9,9 @@ import UIKit
 
 class EditProfileView: UIView {
     // MARK: - Properties
+    weak var delegate: EditProfileNavigationBarDelegate?
+
+    private lazy var navigationBar = EditProfileNavigationBar(customDelegate: delegate)
     private lazy var profileImageView = UIImageView.getProfileImageView()
     private lazy var profileLabel = UILabel(
         text: "Edit photo",
@@ -55,13 +58,18 @@ class EditProfileView: UIView {
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
-
-        setupView()
-        setupConstraints()
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    convenience init(delegate: EditProfileNavigationBarDelegate) {
+        self.init()
+        
+        setupView()
+        setupConstraints()
+        self.delegate = delegate
     }
     // MARK: - Setup view
     private func setupView() {
@@ -72,6 +80,7 @@ class EditProfileView: UIView {
 
     private func setupSubviews() {
         addSubviews(
+            navigationBar,
             profileImageView,
             profileLabel,
             bodyView
@@ -109,6 +118,11 @@ private extension EditProfileView {
 
     private func setupHeaderConstraints() {
         NSLayoutConstraint.activate([
+            navigationBar.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            navigationBar.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            navigationBar.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            // navigationBar.heightAnchor.constraint(equalToConstant: Sizes.Small.height),
+
             profileImageView.leadingAnchor.constraint(
                 equalTo: layoutMarginsGuide.leadingAnchor,
                 constant: Sizes.Large.padding
@@ -118,7 +132,7 @@ private extension EditProfileView {
                 constant: -Sizes.Large.padding
             ),
             profileImageView.topAnchor.constraint(
-                equalTo: safeAreaLayoutGuide.topAnchor
+                equalTo: navigationBar.bottomAnchor
             ),
             profileImageView.heightAnchor.constraint(greaterThanOrEqualToConstant: Sizes.Large.height),
 

@@ -31,6 +31,7 @@
 		6CEF0FB22BB01FAF0075A433 /* ProfilesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEF0FB12BB01FAF0075A433 /* ProfilesListViewController.swift */; };
 		6CEF0FB42BB01FC70075A433 /* ProfilesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEF0FB32BB01FC70075A433 /* ProfilesListView.swift */; };
 		6CEF0FB62BB023FF0075A433 /* UnderlinedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEF0FB52BB023FF0075A433 /* UnderlinedView.swift */; };
+		6CEF0FB82BB05E960075A433 /* EditProfileNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEF0FB72BB05E960075A433 /* EditProfileNavigationBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		6CEF0FB12BB01FAF0075A433 /* ProfilesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilesListViewController.swift; sourceTree = "<group>"; };
 		6CEF0FB32BB01FC70075A433 /* ProfilesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilesListView.swift; sourceTree = "<group>"; };
 		6CEF0FB52BB023FF0075A433 /* UnderlinedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlinedView.swift; sourceTree = "<group>"; };
+		6CEF0FB72BB05E960075A433 /* EditProfileNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileNavigationBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				6C81A8522BAC685000E0FABD /* UnderlinedTextField.swift */,
+				6CEF0FB72BB05E960075A433 /* EditProfileNavigationBar.swift */,
 				6C96194A2BADB4F70042DF58 /* PasswordTextField.swift */,
 				6CEF0FB52BB023FF0075A433 /* UnderlinedView.swift */,
 			);
@@ -379,6 +382,7 @@
 				6C96194B2BADB4F70042DF58 /* PasswordTextField.swift in Sources */,
 				6C81A8292BAC156900E0FABD /* Sizes.swift in Sources */,
 				6C81A8512BAC658800E0FABD /* UIFont+App.swift in Sources */,
+				6CEF0FB82BB05E960075A433 /* EditProfileNavigationBar.swift in Sources */,
 				6C9619472BADAFFB0042DF58 /* UITextField+App.swift in Sources */,
 				6C81A8532BAC685000E0FABD /* UnderlinedTextField.swift in Sources */,
 				6C81A8262BAC154C00E0FABD /* UIViewController+Preview.swift in Sources */,
