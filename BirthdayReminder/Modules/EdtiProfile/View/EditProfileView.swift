@@ -19,43 +19,43 @@ class EditProfileView: UIView, UINavigationBarDelegate {
     private lazy var profileImageView = UIImageView.getProfileImageView()
     private lazy var profileLabel = UILabel(
         text: "Edit photo",
-        font: .appSmallFont,
+        font: .appMediumFont,
         color: .systemBlue,
         aligment: .center
     )
     private lazy var bodyView = UIView(cornerRadius: Sizes.Small.cornerRadius)
     // Name
-    private lazy var nameLabel = UILabel(text: "Name", font: .appSmallFont, color: .systemBlue)
+    private lazy var nameLabel = UILabel(text: "Name", font: .appMediumFont, color: .systemBlue)
     private lazy var nameTextField = UnderlinedTextField(
-        font: .appSmallFont,
+        font: .appMediumFont,
         placeholder: "Fill in the name",
         keyboardType: .default
     )
     // Date
-    private lazy var dateLabel = UILabel(text: "Date", font: .appSmallFont, color: .systemBlue)
+    private lazy var dateLabel = UILabel(text: "Date", font: .appMediumFont, color: .systemBlue)
     private lazy var dateTextField = UnderlinedTextField(
-        font: .appSmallFont,
+        font: .appMediumFont,
         placeholder: "Fill in the date",
         keyboardType: .default
     )
     // Age
-    private lazy var ageLabel = UILabel(text: "Age", font: .appSmallFont, color: .systemBlue)
+    private lazy var ageLabel = UILabel(text: "Age", font: .appMediumFont, color: .systemBlue)
     private lazy var ageTextField = UnderlinedTextField(
-        font: .appSmallFont,
+        font: .appMediumFont,
         placeholder: "To add",
         keyboardType: .default
     )
     // Sex
-    private lazy var sexLabel = UILabel(text: "Sex", font: .appSmallFont, color: .systemBlue)
+    private lazy var sexLabel = UILabel(text: "Sex", font: .appMediumFont, color: .systemBlue)
     private lazy var sexTextField = UnderlinedTextField(
-        font: .appSmallFont,
+        font: .appMediumFont,
         placeholder: "To add",
         keyboardType: .default
     )
     // Instagram
-    private lazy var instLabel = UILabel(text: "Instagram", font: .appSmallFont, color: .systemBlue)
+    private lazy var instLabel = UILabel(text: "Instagram", font: .appMediumFont, color: .systemBlue)
     private lazy var instTextField = UnderlinedTextField(
-        font: .appSmallFont,
+        font: .appMediumFont,
         placeholder: "To add",
         keyboardType: .default
     )
@@ -79,6 +79,7 @@ class EditProfileView: UIView, UINavigationBarDelegate {
     }
 
     private func setupSubviews() {
+
         addSubviews(
             navigationBar,
             profileImageView,
@@ -102,12 +103,57 @@ class EditProfileView: UIView, UINavigationBarDelegate {
             instLabel,
             instTextField
         )
+
+        instTextField.delegate = self
     }
 }
 // MARK: - Delegation
+extension EditProfileView: UITextFieldDelegate {
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        if textField.isEqual(instTextField) {
+            instTextFieldBeginEditing()
+        }
+        return false
+    }
+}
+
 extension EditProfileView: EditProfileNavigationBarDelegate {
+
     func popViewController() {
         delegate?.popViewController()
+    }
+}
+// MARK: - Action handlers
+private extension EditProfileView {
+    private func instTextFieldBeginEditing() {
+        let alert = UIAlertController(
+            title: "Type in your instagram username",
+            message: nil,
+            preferredStyle: .alert
+        )
+        alert.addTextField(
+            configurationHandler: {
+                $0.placeholder = "@AndreiShpartou@"
+            }
+        )
+
+        let cancelAction = UIAlertAction(
+            title: "Cancel",
+            style: .cancel
+        )
+        let doneAction = UIAlertAction(
+            title: "OK",
+            style: .default,
+            handler: { _ in
+                if let text = alert.textFields?.first {
+                }
+            }
+        )
+
+        alert.addAction(cancelAction)
+        alert.addAction(doneAction)
+        
+        delegate?.presentInstAlert(alert)
     }
 }
 // MARK: - Constraints

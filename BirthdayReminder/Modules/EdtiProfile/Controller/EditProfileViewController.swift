@@ -9,6 +9,7 @@ import UIKit
 
 protocol EditProfileViewDelegate: AnyObject {
     func popViewController()
+    func presentInstAlert(_ alert: UIAlertController)
 }
 
 class EditProfileViewController: UIViewController {
@@ -24,7 +25,12 @@ class EditProfileViewController: UIViewController {
 
 // MARK: - Delegation
 extension EditProfileViewController: EditProfileViewDelegate {
+
     func popViewController() {
         dismiss(animated: true)
+    }
+
+    func presentInstAlert(_ alert: UIAlertController) {
+        present(alert, animated: true)
     }
 }

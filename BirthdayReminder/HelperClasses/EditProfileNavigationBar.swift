@@ -21,7 +21,10 @@ class EditProfileNavigationBar: UINavigationBar {
     }
 
     private func setupCustomBar() {
-        backgroundColor = .gray
+        // hide bottom border
+        shadowImage = UIImage()
+        setBackgroundImage(UIImage(), for: .default)
+
         let barItem = UINavigationItem()
         let cancelBarButton = UIBarButtonItem(
             barButtonSystemItem: .cancel,
