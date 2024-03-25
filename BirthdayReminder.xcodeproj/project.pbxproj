@@ -28,6 +28,7 @@
 		6C81A8552BAC68BA00E0FABD /* UIButton+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C81A8542BAC68BA00E0FABD /* UIButton+App.swift */; };
 		6C9619472BADAFFB0042DF58 /* UITextField+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9619462BADAFFB0042DF58 /* UITextField+App.swift */; };
 		6C96194B2BADB4F70042DF58 /* PasswordTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C96194A2BADB4F70042DF58 /* PasswordTextField.swift */; };
+		6CC3DF212BB1A6580035485C /* EditProfileView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC3DF202BB1A6580035485C /* EditProfileView+Constraints.swift */; };
 		6CEF0FB22BB01FAF0075A433 /* ProfilesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEF0FB12BB01FAF0075A433 /* ProfilesListViewController.swift */; };
 		6CEF0FB42BB01FC70075A433 /* ProfilesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEF0FB32BB01FC70075A433 /* ProfilesListView.swift */; };
 		6CEF0FB62BB023FF0075A433 /* UnderlinedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEF0FB52BB023FF0075A433 /* UnderlinedView.swift */; };
@@ -58,6 +59,7 @@
 		6C81A8542BAC68BA00E0FABD /* UIButton+App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+App.swift"; sourceTree = "<group>"; };
 		6C9619462BADAFFB0042DF58 /* UITextField+App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+App.swift"; sourceTree = "<group>"; };
 		6C96194A2BADB4F70042DF58 /* PasswordTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordTextField.swift; sourceTree = "<group>"; };
+		6CC3DF202BB1A6580035485C /* EditProfileView+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditProfileView+Constraints.swift"; sourceTree = "<group>"; };
 		6CEF0FB12BB01FAF0075A433 /* ProfilesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilesListViewController.swift; sourceTree = "<group>"; };
 		6CEF0FB32BB01FC70075A433 /* ProfilesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilesListView.swift; sourceTree = "<group>"; };
 		6CEF0FB52BB023FF0075A433 /* UnderlinedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlinedView.swift; sourceTree = "<group>"; };
@@ -219,6 +221,9 @@
 			isa = PBXGroup;
 			children = (
 				6C13CA092BAEF8A3002EAEF1 /* EditProfileView.swift */,
+				6CC3DF242BB1A9980035485C /* ViewDataSources */,
+				6CC3DF232BB1A9820035485C /* ViewInteractions */,
+				6CC3DF1F2BB1A6480035485C /* Extensions */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -274,6 +279,28 @@
 			children = (
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		6CC3DF1F2BB1A6480035485C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				6CC3DF202BB1A6580035485C /* EditProfileView+Constraints.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		6CC3DF232BB1A9820035485C /* ViewInteractions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewInteractions;
+			sourceTree = "<group>";
+		};
+		6CC3DF242BB1A9980035485C /* ViewDataSources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewDataSources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -380,6 +407,7 @@
 				6CEF0FB22BB01FAF0075A433 /* ProfilesListViewController.swift in Sources */,
 				6C81A84C2BAC61BC00E0FABD /* UILabel+App.swift in Sources */,
 				6C96194B2BADB4F70042DF58 /* PasswordTextField.swift in Sources */,
+				6CC3DF212BB1A6580035485C /* EditProfileView+Constraints.swift in Sources */,
 				6C81A8292BAC156900E0FABD /* Sizes.swift in Sources */,
 				6C81A8512BAC658800E0FABD /* UIFont+App.swift in Sources */,
 				6CEF0FB82BB05E960075A433 /* EditProfileNavigationBar.swift in Sources */,
