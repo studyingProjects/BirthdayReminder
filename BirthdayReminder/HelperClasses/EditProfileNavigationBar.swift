@@ -9,7 +9,7 @@ import UIKit
 
 class EditProfileNavigationBar: UINavigationBar {
     weak var customDelegate: EditProfileNavigationBarDelegate?
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
 
@@ -18,12 +18,6 @@ class EditProfileNavigationBar: UINavigationBar {
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    convenience init(customDelegate: EditProfileNavigationBarDelegate?) {
-        self.init()
-        
-        self.customDelegate = customDelegate
     }
 
     private func setupCustomBar() {

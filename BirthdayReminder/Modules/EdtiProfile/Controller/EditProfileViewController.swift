@@ -7,28 +7,24 @@
 
 import UIKit
 
-protocol EditProfileNavigationBarDelegate: AnyObject {
+protocol EditProfileViewDelegate: AnyObject {
     func popViewController()
 }
 
 class EditProfileViewController: UIViewController {
     weak var coordinator: Coordinator?
 
-    private lazy var editProfileView = EditProfileView(delegate: self)
+    private let editProfileView = EditProfileView()
 
     override func loadView() {
         view = editProfileView
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // editProfileView.delegate = self
+        editProfileView.delegate = self
     }
 }
 
-extension EditProfileViewController: EditProfileNavigationBarDelegate {
+// MARK: - Delegation
+extension EditProfileViewController: EditProfileViewDelegate {
     func popViewController() {
-        coordinator?.navigationController.popViewController(animated: true)
+        dismiss(animated: true)
     }
 }

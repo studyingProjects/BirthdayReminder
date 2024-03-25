@@ -7,11 +7,15 @@
 
 import UIKit
 
-class EditProfileView: UIView {
-    // MARK: - Properties
-    weak var delegate: EditProfileNavigationBarDelegate?
+protocol EditProfileNavigationBarDelegate: AnyObject {
+    func popViewController()
+}
 
-    private lazy var navigationBar = EditProfileNavigationBar(customDelegate: delegate)
+class EditProfileView: UIView, UINavigationBarDelegate {
+    // MARK: - Properties
+    weak var delegate: EditProfileViewDelegate?
+
+    private lazy var navigationBar = EditProfileNavigationBar()
     private lazy var profileImageView = UIImageView.getProfileImageView()
     private lazy var profileLabel = UILabel(
         text: "Edit photo",
@@ -58,18 +62,14 @@ class EditProfileView: UIView {
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
+
+        setupView()
+        setupConstraints()
+        navigationBar.customDelegate = self
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    convenience init(delegate: EditProfileNavigationBarDelegate) {
-        self.init()
-        
-        setupView()
-        setupConstraints()
-        self.delegate = delegate
     }
     // MARK: - Setup view
     private func setupView() {
@@ -102,6 +102,12 @@ class EditProfileView: UIView {
             instLabel,
             instTextField
         )
+    }
+}
+// MARK: - Delegation
+extension EditProfileView: EditProfileNavigationBarDelegate {
+    func popViewController() {
+        delegate?.popViewController()
     }
 }
 // MARK: - Constraints
