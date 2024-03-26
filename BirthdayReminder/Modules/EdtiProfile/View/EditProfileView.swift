@@ -38,6 +38,7 @@ class EditProfileView: UIView, UINavigationBarDelegate {
         placeholder: "Fill in the date",
         keyboardType: .default
     )
+    lazy var datePicker = UIPickerView(isHidden: true, backgroundColor: .systemGray2)
     // Age
     lazy var ageLabel = UILabel(text: "Age", font: .appMediumFont, color: .systemBlue)
     lazy var ageTextField = UnderlinedTextField(
@@ -45,6 +46,7 @@ class EditProfileView: UIView, UINavigationBarDelegate {
         placeholder: "To add",
         keyboardType: .default
     )
+    lazy var agePicker = UIPickerView(isHidden: true, backgroundColor: .systemGray2)
     // Sex
     lazy var sexLabel = UILabel(text: "Sex", font: .appMediumFont, color: .systemBlue)
     lazy var sexTextField = UnderlinedTextField(
@@ -52,6 +54,7 @@ class EditProfileView: UIView, UINavigationBarDelegate {
         placeholder: "To add",
         keyboardType: .default
     )
+    lazy var sexPicker = UIPickerView(isHidden: true, backgroundColor: .systemGray2)
     // Instagram
     lazy var instLabel = UILabel(text: "Instagram", font: .appMediumFont, color: .systemBlue)
     lazy var instTextField = UnderlinedTextField(
@@ -59,6 +62,7 @@ class EditProfileView: UIView, UINavigationBarDelegate {
         placeholder: "To add",
         keyboardType: .default
     )
+    lazy var instPicker = UIPickerView(isHidden: true, backgroundColor: .systemGray2)
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -66,7 +70,7 @@ class EditProfileView: UIView, UINavigationBarDelegate {
         setupView()
         // EditProfileView+Constraints.swift
         setupConstraints()
-        navigationBar.customDelegate = self
+        setupDelegates()
     }
 
     required init?(coder: NSCoder) {
@@ -101,14 +105,31 @@ class EditProfileView: UIView, UINavigationBarDelegate {
             ageTextField,
             sexLabel,
             sexTextField,
+            sexPicker,
             instLabel,
             instTextField
         )
+    }
 
+    private func setupDelegates() {
+        navigationBar.customDelegate = self
+        sexPicker.delegate = self
+        sexPicker.dataSource = self
+        sexTextField.delegate = self
         instTextField.delegate = self
     }
 }
-// MARK: - Delegation
+// MARK: - UIPickerViewDataSource
+extension EditProfileView: UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return 1
+    }
+}
+// MARK: - UITextFieldDelegate
 extension EditProfileView: UITextFieldDelegate {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         if textField.isEqual(instTextField) {
@@ -124,12 +145,15 @@ extension EditProfileView: UITextFieldDelegate {
         return false
     }
 }
-
+// MARK: - NavBarDelegate
 extension EditProfileView: EditProfileNavigationBarDelegate {
 
     func popViewController() {
         delegate?.popViewController()
     }
+}
+// MARK: - UIPickerViewDelegate
+extension EditProfileView: UIPickerViewDelegate {
 }
 // MARK: - Action handlers
 private extension EditProfileView {
@@ -164,7 +188,11 @@ private extension EditProfileView {
         delegate?.presentInstAlert(alert)
     }
 
-    private func ageTextFieldBeginEditing() {}
-    private func sexTextFieldBeginEditing() {}
+    private func ageTextFieldBeginEditing() {
+    }
+
+    private func sexTextFieldBeginEditing() {
+        sexPicker.isHidden = false
+    }
     private func dateTextFieldBeginEditing() {}
 }
