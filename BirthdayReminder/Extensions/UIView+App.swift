@@ -21,7 +21,7 @@ extension UIView {
             self.addSubview($0)
         }
     }
-    
+
     func initHideKeyboard() {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         self.addGestureRecognizer(gesture)
@@ -33,7 +33,7 @@ extension UIView {
         self.layer.cornerRadius = cornerRadius
         self.backgroundColor = backGroundColor
     }
-    
+
     @objc
     private func dismissKeyboard() {
         self.endEditing(true)

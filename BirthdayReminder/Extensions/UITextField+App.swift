@@ -25,4 +25,19 @@ extension UITextField {
         self.returnKeyType = .done
         self.keyboardAppearance = .dark
     }
+
+    func addDoneToolBarButton() {
+        let bar = UIToolbar()
+        let doneBtn = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(closeKeyboard))
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        bar.items = [flexSpace, flexSpace, doneBtn]
+        bar.sizeToFit()
+
+        self.inputAccessoryView = bar
+    }
+
+    @objc
+    private func closeKeyboard() {
+        self.resignFirstResponder()
+    }
 }

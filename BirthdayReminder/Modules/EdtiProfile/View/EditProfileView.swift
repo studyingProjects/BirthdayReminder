@@ -66,13 +66,14 @@ class EditProfileView: UIView, UINavigationBarDelegate {
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+
         self.initHideKeyboard()
-        
+
         setupView()
         // EditProfileView+Constraints.swift
         setupConstraints()
         setupDelegates()
+        setupViewTags()
     }
 
     required init?(coder: NSCoder) {
@@ -115,10 +116,24 @@ class EditProfileView: UIView, UINavigationBarDelegate {
 
     private func setupDelegates() {
         navigationBar.customDelegate = self
-        sexPicker.delegate = self
-        sexPicker.dataSource = self
+        nameTextField.delegate = self
+        dateTextField.delegate = self
+        ageTextField.delegate = self
         sexTextField.delegate = self
         instTextField.delegate = self
+
+        sexPicker.delegate = self
+        sexPicker.dataSource = self
+    }
+
+    private func setupViewTags() {
+        nameTextField.tag = 0
+        dateTextField.tag = 1
+        ageTextField.tag = 2
+        sexTextField.tag = 3
+        instTextField.tag = 4
+
+        ageTextField.addDoneToolBarButton()
     }
 }
 // MARK: - UIPickerViewDataSource
@@ -138,10 +153,22 @@ extension EditProfileView: UITextFieldDelegate {
             instTextFieldBeginEditing()
         } else if textField.isEqual(ageTextField) {
             ageTextFieldBeginEditing()
+            return true
         } else if textField.isEqual(dateTextField) {
             dateTextFieldBeginEditing()
         } else if textField.isEqual(sexTextField) {
             sexTextFieldBeginEditing()
+        }
+
+        return false
+    }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+
+        if let nextField = self.viewWithTag(textField.tag + 1) as? UITextField {
+            nextField.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
         }
 
         return false
