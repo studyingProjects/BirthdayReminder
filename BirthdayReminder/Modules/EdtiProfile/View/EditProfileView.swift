@@ -66,7 +66,9 @@ class EditProfileView: UIView, UINavigationBarDelegate {
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
-
+        
+        self.initHideKeyboard()
+        
         setupView()
         // EditProfileView+Constraints.swift
         setupConstraints()
