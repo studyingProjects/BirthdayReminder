@@ -31,6 +31,7 @@
 		6C96194B2BADB4F70042DF58 /* PasswordTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C96194A2BADB4F70042DF58 /* PasswordTextField.swift */; };
 		6CC3DF212BB1A6580035485C /* EditProfileView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC3DF202BB1A6580035485C /* EditProfileView+Constraints.swift */; };
 		6CE67BB32BB6BF5900311381 /* ToolBarPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE67BB22BB6BF5900311381 /* ToolBarPickerView.swift */; };
+		6CE67BB52BB6EADB00311381 /* ToolBarDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE67BB42BB6EADB00311381 /* ToolBarDatePicker.swift */; };
 		6CEF0FB22BB01FAF0075A433 /* ProfilesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEF0FB12BB01FAF0075A433 /* ProfilesListViewController.swift */; };
 		6CEF0FB42BB01FC70075A433 /* ProfilesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEF0FB32BB01FC70075A433 /* ProfilesListView.swift */; };
 		6CEF0FB62BB023FF0075A433 /* UnderlinedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEF0FB52BB023FF0075A433 /* UnderlinedView.swift */; };
@@ -64,6 +65,7 @@
 		6C96194A2BADB4F70042DF58 /* PasswordTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordTextField.swift; sourceTree = "<group>"; };
 		6CC3DF202BB1A6580035485C /* EditProfileView+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditProfileView+Constraints.swift"; sourceTree = "<group>"; };
 		6CE67BB22BB6BF5900311381 /* ToolBarPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolBarPickerView.swift; sourceTree = "<group>"; };
+		6CE67BB42BB6EADB00311381 /* ToolBarDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolBarDatePicker.swift; sourceTree = "<group>"; };
 		6CEF0FB12BB01FAF0075A433 /* ProfilesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilesListViewController.swift; sourceTree = "<group>"; };
 		6CEF0FB32BB01FC70075A433 /* ProfilesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilesListView.swift; sourceTree = "<group>"; };
 		6CEF0FB52BB023FF0075A433 /* UnderlinedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlinedView.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				6C81A8522BAC685000E0FABD /* UnderlinedTextField.swift */,
+				6CE67BB42BB6EADB00311381 /* ToolBarDatePicker.swift */,
 				6CEF0FB72BB05E960075A433 /* EditProfileNavigationBar.swift */,
 				6CE67BB22BB6BF5900311381 /* ToolBarPickerView.swift */,
 				6C96194A2BADB4F70042DF58 /* PasswordTextField.swift */,
@@ -410,6 +413,7 @@
 				6C81A8552BAC68BA00E0FABD /* UIButton+App.swift in Sources */,
 				6C81A83B2BAC226000E0FABD /* LoginView.swift in Sources */,
 				6C81A8122BAC145900E0FABD /* SceneDelegate.swift in Sources */,
+				6CE67BB52BB6EADB00311381 /* ToolBarDatePicker.swift in Sources */,
 				6CE67BB32BB6BF5900311381 /* ToolBarPickerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -32,7 +32,7 @@ class EditProfileView: UIView, UINavigationBarDelegate {
     )
     // Date
     lazy var dateLabel = UILabel(text: "Date", font: .appMediumFont, color: .systemBlue)
-    lazy var datePicker = ToolBarPickerView(isHidden: true, backgroundColor: .systemGray2)
+    lazy var datePicker = ToolBarDatePicker(backgroundColor: .systemGray2)
     lazy var dateTextField = UnderlinedTextField(
         font: .appMediumFont,
         placeholder: "Fill in the date",
@@ -42,7 +42,7 @@ class EditProfileView: UIView, UINavigationBarDelegate {
     )
     // Age
     lazy var ageLabel = UILabel(text: "Age", font: .appMediumFont, color: .systemBlue)
-    lazy var agePicker = ToolBarPickerView(isHidden: true, backgroundColor: .systemGray2)
+    lazy var agePicker = ToolBarPickerView(backgroundColor: .systemGray2)
     lazy var ageTextField = UnderlinedTextField(
         font: .appMediumFont,
         placeholder: "To add",
@@ -52,7 +52,7 @@ class EditProfileView: UIView, UINavigationBarDelegate {
     )
     // Sex
     lazy var sexLabel = UILabel(text: "Sex", font: .appMediumFont, color: .systemBlue)
-    lazy var sexPicker = ToolBarPickerView(isHidden: true, backgroundColor: .systemGray2)
+    lazy var sexPicker = ToolBarPickerView(backgroundColor: .systemGray2)
     lazy var sexTextField = UnderlinedTextField(
         font: .appMediumFont,
         placeholder: "To add",
@@ -68,12 +68,15 @@ class EditProfileView: UIView, UINavigationBarDelegate {
         keyboardType: .default
     )
     // MARK: - View model properties
+    private var selectedTextFieldIndex: Int?
+    private var selectedPickerTitle: String?
     private var textFields: [UITextField] = []
     private var pickerViews: [ToolBarPickerView] = []
     private let defaultCountOfComponents = 1
     private let defaultCountOfRows = 0
     private let defaultRowValue = "?"
     private let sexPickerModel = ["Male", "Female"]
+    private let agePickerModel: [Int] = Array(16...100)
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -132,9 +135,10 @@ class EditProfileView: UIView, UINavigationBarDelegate {
         instTextField.tag = 4
         // Setup default view arrays
         textFields = [nameTextField, dateTextField, ageTextField, sexTextField, instTextField]
-        pickerViews = [datePicker, agePicker, sexPicker]
+        pickerViews = [agePicker, sexPicker]
         // Setup delegates
         navigationBar.customDelegate = self
+        datePicker.toolBarDelegate = self
 
         textFields.forEach {
             $0.delegate = self
@@ -190,7 +194,11 @@ extension EditProfileView: UITextFieldDelegate {
             return false
         }
 
-        return false
+        return true
+    }
+
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        selectedTextFieldIndex = textFields.firstIndex(of: textField)
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -216,6 +224,8 @@ extension EditProfileView: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if pickerView.isEqual(sexPicker) {
             return sexPickerModel[row]
+        } else if pickerView.isEqual(agePicker) {
+            return String(agePickerModel[row])
         }
 
         return defaultRowValue
@@ -231,6 +241,8 @@ extension EditProfileView: UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if pickerView.isEqual(sexPicker) {
             return sexPickerModel.count
+        } else if pickerView.isEqual(agePicker) {
+            return agePickerModel.count
         }
 
         return defaultCountOfRows
@@ -239,9 +251,24 @@ extension EditProfileView: UIPickerViewDataSource {
 // MARK: - ToolBarPickerViewDelegate
 extension EditProfileView: ToolBarPickerViewDelegate {
     func cancelTapped(_ sender: UIBarButtonItem) {
-        sender.customView?.resignFirstResponder()
+        guard let index = selectedTextFieldIndex else {
+            return
+        }
+
+        selectedTextFieldIndex = nil
+        textFields[index].text = nil
+        textFields[index].endEditing(true)
     }
 
     func saveTapped(_ sender: UIBarButtonItem) {
+    }
+}
+// MARK: - ToolBarDatePickerView
+extension EditProfileView: ToolBarDatePickerDelegate {
+    func cancelTapped() {
+        dateTextField.endEditing(true)
+    }
+
+    func saveTapped() {
     }
 }

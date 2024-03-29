@@ -1,5 +1,5 @@
 //
-//  ToolBarPickerView.swift
+//  TollBarDatePicker.swift
 //  BirthdayReminder
 //
 //  Created by Andrei Shpartou on 29/03/2024.
@@ -7,18 +7,19 @@
 
 import UIKit
 
-protocol ToolBarPickerViewDelegate: AnyObject {
-    func cancelTapped(_ sender: UIBarButtonItem)
-    func saveTapped(_ sender: UIBarButtonItem)
+protocol ToolBarDatePickerDelegate: AnyObject {
+    func cancelTapped()
+    func saveTapped()
 }
 
-class ToolBarPickerView: UIPickerView {
+class ToolBarDatePicker: UIDatePicker {
     private(set) var toolBarView: UIToolbar?
-    weak var toolBarDelegate: ToolBarPickerViewDelegate?
+    weak var toolBarDelegate: ToolBarDatePickerDelegate?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addSelectionIndicators()
+
+        setupToolBar()
     }
 
     required init?(coder: NSCoder) {
@@ -27,12 +28,17 @@ class ToolBarPickerView: UIPickerView {
 
     convenience init(backgroundColor: UIColor) {
         self.init(frame: .zero)
-
         self.backgroundColor = backgroundColor
-        addSelectionIndicators()
+
+        self.datePickerMode = .date
+        self.preferredDatePickerStyle = .wheels
+        // self.minimumDate
+        // self.maximumDate
+
+        setupToolBar()
     }
 
-    private func addSelectionIndicators() {
+    private func setupToolBar() {
         let toolBar = UIToolbar()
         toolBar.isTranslucent = true
         toolBar.barStyle = .black
@@ -50,25 +56,25 @@ class ToolBarPickerView: UIPickerView {
             action: nil
         )
 
-        let doneButton = UIBarButtonItem(
+        let saveButton = UIBarButtonItem(
             barButtonSystemItem: .save,
             target: self,
             action: #selector(saveTapped)
         )
 
-        toolBar.setItems([cancelButton, spaceButton, doneButton], animated: true)
+        toolBar.setItems([cancelButton, spaceButton, saveButton], animated: true)
         toolBar.isUserInteractionEnabled = true
 
         self.toolBarView = toolBar
     }
 
     @objc
-    private func cancelTapped(_ sender: UIBarButtonItem) {
-        toolBarDelegate?.cancelTapped(sender)
+    private func cancelTapped() {
+        toolBarDelegate?.cancelTapped()
     }
 
     @objc
-    private func saveTapped(_ sender: UIBarButtonItem) {
-        toolBarDelegate?.saveTapped(sender)
+    private func saveTapped() {
+        toolBarDelegate?.saveTapped()
     }
 }
