@@ -35,7 +35,7 @@ class ToolBarPickerView: UIPickerView {
     private func addSelectionIndicators() {
         let toolBar = UIToolbar()
         toolBar.isTranslucent = true
-        toolBar.barStyle = .black
+        toolBar.barStyle = .default
         toolBar.sizeToFit()
 
         let cancelButton = UIBarButtonItem(

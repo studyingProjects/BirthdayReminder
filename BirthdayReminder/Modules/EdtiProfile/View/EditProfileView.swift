@@ -163,7 +163,11 @@ private extension EditProfileView {
         )
         alert.addTextField(
             configurationHandler: {
-                $0.placeholder = "@AndreiShpartou@"
+                if let text = self.instTextField.text {
+                    $0.text = text
+                } else {
+                    $0.placeholder = "@AndreiShpartou@"
+                }
             }
         )
 
@@ -175,7 +179,8 @@ private extension EditProfileView {
             title: "OK",
             style: .default,
             handler: { _ in
-                if let text = alert.textFields?.first {
+                if let text = alert.textFields?.first?.text {
+                    self.instTextField.text = text
                 }
             }
         )
@@ -230,6 +235,14 @@ extension EditProfileView: UIPickerViewDelegate {
 
         return defaultRowValue
     }
+
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if pickerView.isEqual(sexPicker) {
+            sexTextField.text = sexPickerModel[row]
+        } else if pickerView.isEqual(agePicker) {
+            ageTextField.text = String(agePickerModel[row])
+        }
+    }
 }
 
 // MARK: - UIPickerViewDataSource
@@ -261,6 +274,16 @@ extension EditProfileView: ToolBarPickerViewDelegate {
     }
 
     func saveTapped(_ sender: UIBarButtonItem) {
+        guard let index = selectedTextFieldIndex else {
+            return
+        }
+
+        // let row = self.pickerView.selectedRow(inComponent: 0)
+        // self.pickerView.selectRow(row, inComponent: 0, animated: false)
+        // self.textView.text = self.titles[row]
+        // self.textField.resignFirstResponder()
+
+        textFields[index].endEditing(true)
     }
 }
 // MARK: - ToolBarDatePickerView
@@ -270,5 +293,6 @@ extension EditProfileView: ToolBarDatePickerDelegate {
     }
 
     func saveTapped() {
+        dateTextField.endEditing(true)
     }
 }

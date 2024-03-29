@@ -32,8 +32,6 @@ class ToolBarDatePicker: UIDatePicker {
 
         self.datePickerMode = .date
         self.preferredDatePickerStyle = .wheels
-        // self.minimumDate
-        // self.maximumDate
 
         setupToolBar()
     }
@@ -41,7 +39,7 @@ class ToolBarDatePicker: UIDatePicker {
     private func setupToolBar() {
         let toolBar = UIToolbar()
         toolBar.isTranslucent = true
-        toolBar.barStyle = .black
+        toolBar.barStyle = .default
         toolBar.sizeToFit()
 
         let cancelButton = UIBarButtonItem(
