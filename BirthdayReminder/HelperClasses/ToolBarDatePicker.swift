@@ -10,6 +10,7 @@ import UIKit
 protocol ToolBarDatePickerDelegate: AnyObject {
     func cancelTapped()
     func saveTapped()
+    func dateValueChanged()
 }
 
 class ToolBarDatePicker: UIDatePicker {
@@ -32,6 +33,13 @@ class ToolBarDatePicker: UIDatePicker {
 
         self.datePickerMode = .date
         self.preferredDatePickerStyle = .wheels
+        self.addTarget(self, action: #selector(dateValueChanged), for: .valueChanged)
+
+        let hundredYearsAgo = Calendar.current.date(byAdding: .year, value: -100, to: Date())
+        let tenYearsAgo = Calendar.current.date(byAdding: .year, value: -10, to: Date())
+
+        self.minimumDate = hundredYearsAgo
+        self.maximumDate = tenYearsAgo
 
         setupToolBar()
     }
@@ -74,5 +82,10 @@ class ToolBarDatePicker: UIDatePicker {
     @objc
     private func saveTapped() {
         toolBarDelegate?.saveTapped()
+    }
+
+    @objc
+    private func dateValueChanged() {
+        toolBarDelegate?.dateValueChanged()
     }
 }

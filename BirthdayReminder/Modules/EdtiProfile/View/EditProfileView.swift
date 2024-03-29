@@ -288,11 +288,18 @@ extension EditProfileView: ToolBarPickerViewDelegate {
 }
 // MARK: - ToolBarDatePickerView
 extension EditProfileView: ToolBarDatePickerDelegate {
+
     func cancelTapped() {
         dateTextField.endEditing(true)
     }
 
     func saveTapped() {
         dateTextField.endEditing(true)
+    }
+
+    func dateValueChanged() {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        dateTextField.text = dateFormatter.string(from: datePicker.date)
     }
 }
