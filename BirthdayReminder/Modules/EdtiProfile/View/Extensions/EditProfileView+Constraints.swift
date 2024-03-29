@@ -82,6 +82,8 @@ extension EditProfileView {
             dateTextField.trailingAnchor.constraint(equalTo: bodyView.trailingAnchor),
             dateTextField.topAnchor.constraint(equalTo: dateLabel.bottomAnchor),
             dateTextField.heightAnchor.constraint(equalToConstant: Sizes.Small.height)
+            // datePicker.centerXAnchor.constraint(equalTo: bodyView.centerXAnchor),
+            // datePicker.centerYAnchor.constraint(equalTo: dateTextField.centerYAnchor)
         ])
     }
 
@@ -97,6 +99,8 @@ extension EditProfileView {
             ageTextField.trailingAnchor.constraint(equalTo: bodyView.trailingAnchor),
             ageTextField.topAnchor.constraint(equalTo: ageLabel.bottomAnchor),
             ageTextField.heightAnchor.constraint(equalToConstant: Sizes.Small.height)
+            // agePicker.centerXAnchor.constraint(equalTo: bodyView.centerXAnchor),
+            // agePicker.centerYAnchor.constraint(equalTo: ageTextField.centerYAnchor)
         ])
     }
 
@@ -112,6 +116,8 @@ extension EditProfileView {
             sexTextField.trailingAnchor.constraint(equalTo: bodyView.trailingAnchor),
             sexTextField.topAnchor.constraint(equalTo: sexLabel.bottomAnchor),
             sexTextField.heightAnchor.constraint(equalToConstant: Sizes.Small.height)
+            // sexPicker.centerXAnchor.constraint(equalTo: bodyView.centerXAnchor),
+            // sexPicker.centerYAnchor.constraint(equalTo: sexTextField.centerYAnchor)
         ])
     }
 

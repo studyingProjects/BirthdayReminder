@@ -12,9 +12,8 @@ protocol EditProfileNavigationBarDelegate: AnyObject {
 }
 
 class EditProfileView: UIView, UINavigationBarDelegate {
-    // MARK: - Properties
     weak var delegate: EditProfileViewDelegate?
-
+    // MARK: - Subviews properties
     lazy var navigationBar = EditProfileNavigationBar()
     lazy var profileImageView = UIImageView.getProfileImageView()
     lazy var profileLabel = UILabel(
@@ -33,28 +32,34 @@ class EditProfileView: UIView, UINavigationBarDelegate {
     )
     // Date
     lazy var dateLabel = UILabel(text: "Date", font: .appMediumFont, color: .systemBlue)
+    lazy var datePicker = ToolBarPickerView(isHidden: true, backgroundColor: .systemGray2)
     lazy var dateTextField = UnderlinedTextField(
         font: .appMediumFont,
         placeholder: "Fill in the date",
-        keyboardType: .default
+        keyboardType: .default,
+        inputView: datePicker,
+        inputAccessoryView: datePicker.toolBarView
     )
-    lazy var datePicker = UIPickerView(isHidden: true, backgroundColor: .systemGray2)
     // Age
     lazy var ageLabel = UILabel(text: "Age", font: .appMediumFont, color: .systemBlue)
+    lazy var agePicker = ToolBarPickerView(isHidden: true, backgroundColor: .systemGray2)
     lazy var ageTextField = UnderlinedTextField(
         font: .appMediumFont,
         placeholder: "To add",
-        keyboardType: .default
+        keyboardType: .default,
+        inputView: agePicker,
+        inputAccessoryView: agePicker.toolBarView
     )
-    lazy var agePicker = UIPickerView(isHidden: true, backgroundColor: .systemGray2)
     // Sex
     lazy var sexLabel = UILabel(text: "Sex", font: .appMediumFont, color: .systemBlue)
+    lazy var sexPicker = ToolBarPickerView(isHidden: true, backgroundColor: .systemGray2)
     lazy var sexTextField = UnderlinedTextField(
         font: .appMediumFont,
         placeholder: "To add",
-        keyboardType: .default
+        keyboardType: .default,
+        inputView: sexPicker,
+        inputAccessoryView: sexPicker.toolBarView
     )
-    lazy var sexPicker = UIPickerView(isHidden: true, backgroundColor: .systemGray2)
     // Instagram
     lazy var instLabel = UILabel(text: "Instagram", font: .appMediumFont, color: .systemBlue)
     lazy var instTextField = UnderlinedTextField(
@@ -62,7 +67,13 @@ class EditProfileView: UIView, UINavigationBarDelegate {
         placeholder: "To add",
         keyboardType: .default
     )
-    lazy var instPicker = UIPickerView(isHidden: true, backgroundColor: .systemGray2)
+    // MARK: - View model properties
+    private var textFields: [UITextField] = []
+    private var pickerViews: [ToolBarPickerView] = []
+    private let defaultCountOfComponents = 1
+    private let defaultCountOfRows = 0
+    private let defaultRowValue = "?"
+    private let sexPickerModel = ["Male", "Female"]
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -72,8 +83,7 @@ class EditProfileView: UIView, UINavigationBarDelegate {
         setupView()
         // EditProfileView+Constraints.swift
         setupConstraints()
-        setupDelegates()
-        setupViewTags()
+        setupDefaults()
     }
 
     required init?(coder: NSCoder) {
@@ -108,81 +118,36 @@ class EditProfileView: UIView, UINavigationBarDelegate {
             ageTextField,
             sexLabel,
             sexTextField,
-            sexPicker,
             instLabel,
             instTextField
         )
     }
 
-    private func setupDelegates() {
-        navigationBar.customDelegate = self
-        nameTextField.delegate = self
-        dateTextField.delegate = self
-        ageTextField.delegate = self
-        sexTextField.delegate = self
-        instTextField.delegate = self
-
-        sexPicker.delegate = self
-        sexPicker.dataSource = self
-    }
-
-    private func setupViewTags() {
+    private func setupDefaults() {
+        // Setup tags
         nameTextField.tag = 0
         dateTextField.tag = 1
         ageTextField.tag = 2
         sexTextField.tag = 3
         instTextField.tag = 4
+        // Setup default view arrays
+        textFields = [nameTextField, dateTextField, ageTextField, sexTextField, instTextField]
+        pickerViews = [datePicker, agePicker, sexPicker]
+        // Setup delegates
+        navigationBar.customDelegate = self
 
-        ageTextField.addDoneToolBarButton()
-    }
-}
-// MARK: - UIPickerViewDataSource
-extension EditProfileView: UIPickerViewDataSource {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 1
-    }
-}
-// MARK: - UITextFieldDelegate
-extension EditProfileView: UITextFieldDelegate {
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        if textField.isEqual(instTextField) {
-            instTextFieldBeginEditing()
-        } else if textField.isEqual(ageTextField) {
-            ageTextFieldBeginEditing()
-            return true
-        } else if textField.isEqual(dateTextField) {
-            dateTextFieldBeginEditing()
-        } else if textField.isEqual(sexTextField) {
-            sexTextFieldBeginEditing()
+        textFields.forEach {
+            $0.delegate = self
         }
 
-        return false
-    }
-
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-
-        if let nextField = self.viewWithTag(textField.tag + 1) as? UITextField {
-            nextField.becomeFirstResponder()
-        } else {
-            textField.resignFirstResponder()
+        pickerViews.forEach {
+            $0.delegate = self
+            $0.dataSource = self
+            $0.toolBarDelegate = self
         }
 
-        return false
+        // ageTextField.addDoneToolBarButton()
     }
-}
-// MARK: - NavBarDelegate
-extension EditProfileView: EditProfileNavigationBarDelegate {
-
-    func popViewController() {
-        delegate?.popViewController()
-    }
-}
-// MARK: - UIPickerViewDelegate
-extension EditProfileView: UIPickerViewDelegate {
 }
 // MARK: - Action handlers
 private extension EditProfileView {
@@ -216,12 +181,67 @@ private extension EditProfileView {
 
         delegate?.presentInstAlert(alert)
     }
+}
+// MARK: - UITextFieldDelegate
+extension EditProfileView: UITextFieldDelegate {
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        if textField.isEqual(instTextField) {
+            instTextFieldBeginEditing()
+            return false
+        }
 
-    private func ageTextFieldBeginEditing() {
+        return false
     }
 
-    private func sexTextFieldBeginEditing() {
-        sexPicker.isHidden = false
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+
+        if let nextField = self.viewWithTag(textField.tag + 1) as? UITextField {
+            nextField.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
+
+        return false
     }
-    private func dateTextFieldBeginEditing() {}
+}
+// MARK: - NavBarDelegate
+extension EditProfileView: EditProfileNavigationBarDelegate {
+
+    func popViewController() {
+        delegate?.popViewController()
+    }
+}
+// MARK: - UIPickerViewDelegate
+extension EditProfileView: UIPickerViewDelegate {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if pickerView.isEqual(sexPicker) {
+            return sexPickerModel[row]
+        }
+
+        return defaultRowValue
+    }
+}
+
+// MARK: - UIPickerViewDataSource
+extension EditProfileView: UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return defaultCountOfComponents
+    }
+
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        if pickerView.isEqual(sexPicker) {
+            return sexPickerModel.count
+        }
+
+        return defaultCountOfRows
+    }
+}
+// MARK: - ToolBarPickerViewDelegate
+extension EditProfileView: ToolBarPickerViewDelegate {
+    func cancelTapped(_ sender: UIBarButtonItem) {
+        sender.customView?.resignFirstResponder()
+    }
+
+    func saveTapped(_ sender: UIBarButtonItem) {
+    }
 }

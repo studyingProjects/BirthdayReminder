@@ -12,7 +12,9 @@ extension UITextField {
         text: String? = nil,
         font: UIFont? = nil,
         placeholder: String? = nil,
-        keyboardType: UIKeyboardType = .default
+        keyboardType: UIKeyboardType = .default,
+        inputView: UIView? = nil,
+        inputAccessoryView: UIView? = nil
     ) {
         self.init(frame: .zero)
         self.text = text
@@ -24,6 +26,9 @@ extension UITextField {
         self.autocorrectionType = .no
         self.returnKeyType = .done
         self.keyboardAppearance = .dark
+
+        self.inputView = inputView
+        self.inputAccessoryView = inputAccessoryView
     }
 
     func addDoneToolBarButton() {
