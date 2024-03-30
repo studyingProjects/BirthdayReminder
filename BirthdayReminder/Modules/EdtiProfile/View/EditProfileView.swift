@@ -125,7 +125,7 @@ class EditProfileView: UIView, UINavigationBarDelegate {
             instTextField
         )
     }
-
+    // MARK: - setupDefaults
     private func setupDefaults() {
         // Setup tags
         nameTextField.tag = 0
@@ -149,7 +149,6 @@ class EditProfileView: UIView, UINavigationBarDelegate {
             $0.dataSource = self
             $0.toolBarDelegate = self
         }
-
         // ageTextField.addDoneToolBarButton()
     }
 }
@@ -199,11 +198,18 @@ extension EditProfileView: UITextFieldDelegate {
             return false
         }
 
+        // Setup default pickers rows
+        // $0.selectRow(0, inComponent: 0, animated: true)
+
         return true
     }
 
     func textFieldDidBeginEditing(_ textField: UITextField) {
         selectedTextFieldIndex = textFields.firstIndex(of: textField)
+        if (textField.text ?? "").isEmpty,
+           let pickerView = textField.inputView as? UIPickerView {
+            pickerView.delegate?.pickerView?(pickerView, didSelectRow: defaultCountOfRows, inComponent: defaultCountOfRows)
+        }
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -215,6 +221,21 @@ extension EditProfileView: UITextFieldDelegate {
         }
 
         return false
+    }
+
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        let text = textField.text
+        if textField.isEqual(nameTextField) {
+            delegate?.updateName(with: text)
+        } else if textField.isEqual(dateTextField) {
+            delegate?.updateBirthDate(with: text)
+        } else if textField.isEqual(ageTextField) {
+            delegate?.updateAge(with: text)
+        } else if textField.isEqual(sexTextField) {
+            delegate?.updateSex(with: text)
+        } else if textField.isEqual(instTextField) {
+            delegate?.updateInst(with: text)
+        }
     }
 }
 // MARK: - NavBarDelegate
@@ -278,6 +299,11 @@ extension EditProfileView: ToolBarPickerViewDelegate {
             return
         }
 
+        // let currentTextField = textFields[index]
+        // if (currentTextField.text ?? "").isEmpty {
+            // Depends on pickerView
+        // }
+
         // let row = self.pickerView.selectedRow(inComponent: 0)
         // self.pickerView.selectRow(row, inComponent: 0, animated: false)
         // self.textView.text = self.titles[row]
@@ -294,6 +320,10 @@ extension EditProfileView: ToolBarDatePickerDelegate {
     }
 
     func saveTapped() {
+        // if (dateTextField.text ?? "").isEmpty {
+           // dateValueChanged()
+        // }
+
         dateTextField.endEditing(true)
     }
 
@@ -302,5 +332,15 @@ extension EditProfileView: ToolBarDatePickerDelegate {
         // dateFormatter.dateStyle = .short
         dateFormatter.dateFormat = "E, d MMM"
         dateTextField.text = dateFormatter.string(from: datePicker.date)
+    }
+}
+// MARK: - EditProfileViewControllerDelegate
+extension EditProfileView: EditProfileViewControllerDelegate {
+    func updateViewData(with profileModel: ProfileModelProtocol) {
+        nameTextField.text = profileModel.name
+        dateTextField.text = profileModel.birthDate
+        ageTextField.text = profileModel.age
+        sexTextField.text = profileModel.sex
+        instTextField.text = profileModel.inst
     }
 }

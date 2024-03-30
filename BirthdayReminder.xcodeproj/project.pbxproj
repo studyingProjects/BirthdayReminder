@@ -32,6 +32,7 @@
 		6CC3DF212BB1A6580035485C /* EditProfileView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC3DF202BB1A6580035485C /* EditProfileView+Constraints.swift */; };
 		6CE67BB32BB6BF5900311381 /* ToolBarPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE67BB22BB6BF5900311381 /* ToolBarPickerView.swift */; };
 		6CE67BB52BB6EADB00311381 /* ToolBarDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE67BB42BB6EADB00311381 /* ToolBarDatePicker.swift */; };
+		6CEBCB872BB8097A005A9549 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEBCB862BB8097A005A9549 /* ProfileModel.swift */; };
 		6CEF0FB22BB01FAF0075A433 /* ProfilesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEF0FB12BB01FAF0075A433 /* ProfilesListViewController.swift */; };
 		6CEF0FB42BB01FC70075A433 /* ProfilesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEF0FB32BB01FC70075A433 /* ProfilesListView.swift */; };
 		6CEF0FB62BB023FF0075A433 /* UnderlinedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEF0FB52BB023FF0075A433 /* UnderlinedView.swift */; };
@@ -66,6 +67,7 @@
 		6CC3DF202BB1A6580035485C /* EditProfileView+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditProfileView+Constraints.swift"; sourceTree = "<group>"; };
 		6CE67BB22BB6BF5900311381 /* ToolBarPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolBarPickerView.swift; sourceTree = "<group>"; };
 		6CE67BB42BB6EADB00311381 /* ToolBarDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolBarDatePicker.swift; sourceTree = "<group>"; };
+		6CEBCB862BB8097A005A9549 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
 		6CEF0FB12BB01FAF0075A433 /* ProfilesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilesListViewController.swift; sourceTree = "<group>"; };
 		6CEF0FB32BB01FC70075A433 /* ProfilesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilesListView.swift; sourceTree = "<group>"; };
 		6CEF0FB52BB023FF0075A433 /* UnderlinedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlinedView.swift; sourceTree = "<group>"; };
@@ -238,6 +240,7 @@
 		6C81A8332BAC223600E0FABD /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				6CEBCB862BB8097A005A9549 /* ProfileModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -398,6 +401,7 @@
 				6C13CA0E2BAEFE1D002EAEF1 /* UIImageView+App.swift in Sources */,
 				6C81A84A2BAC5FFE00E0FABD /* UIColor+App.swift in Sources */,
 				6C81A8402BAC229E00E0FABD /* MainCoordinator.swift in Sources */,
+				6CEBCB872BB8097A005A9549 /* ProfileModel.swift in Sources */,
 				6CEF0FB22BB01FAF0075A433 /* ProfilesListViewController.swift in Sources */,
 				6C81A84C2BAC61BC00E0FABD /* UILabel+App.swift in Sources */,
 				6C96194B2BADB4F70042DF58 /* PasswordTextField.swift in Sources */,
