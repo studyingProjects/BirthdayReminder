@@ -299,7 +299,8 @@ extension EditProfileView: ToolBarDatePickerDelegate {
 
     func dateValueChanged() {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .short
+        // dateFormatter.dateStyle = .short
+        dateFormatter.dateFormat = "E, d MMM"
         dateTextField.text = dateFormatter.string(from: datePicker.date)
     }
 }
