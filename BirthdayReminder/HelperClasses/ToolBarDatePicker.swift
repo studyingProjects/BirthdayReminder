@@ -31,15 +31,18 @@ class ToolBarDatePicker: UIDatePicker {
         self.init(frame: .zero)
         self.backgroundColor = backgroundColor
 
-        self.datePickerMode = .date
+        self.datePickerMode = .dateAndTime
         self.preferredDatePickerStyle = .wheels
         self.addTarget(self, action: #selector(dateValueChanged), for: .valueChanged)
 
-        let hundredYearsAgo = Calendar.current.date(byAdding: .year, value: -100, to: Date())
-        let tenYearsAgo = Calendar.current.date(byAdding: .year, value: -10, to: Date())
+        let currentDate = Date()
+        let currentYearComponent = Calendar.current.dateComponents([.year], from: currentDate)
+        let firstDayOfYear = Calendar.current.date(from: currentYearComponent) ?? currentDate
+        let lastDayOfYear = Calendar.current.date(byAdding: DateComponents(year: 1, day: -1), to: firstDayOfYear)
 
-        self.minimumDate = hundredYearsAgo
-        self.maximumDate = tenYearsAgo
+        self.date = currentDate
+        self.minimumDate = firstDayOfYear
+        self.maximumDate = lastDayOfYear
 
         setupToolBar()
     }
