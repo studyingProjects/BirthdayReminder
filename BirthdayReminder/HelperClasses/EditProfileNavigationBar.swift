@@ -51,5 +51,6 @@ class EditProfileNavigationBar: UINavigationBar {
 
     @objc
     private func addTapped() {
+        customDelegate?.addTapped()
     }
 }

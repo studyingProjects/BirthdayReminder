@@ -14,14 +14,16 @@ protocol ProfilesListViewDelegate: AnyObject {
 class ProfilesListViewController: UIViewController {
     // MARK: - Properties
     weak var coordinator: Coordinator?
+    weak var delegate: ProfilesListViewControllerDelegate?
 
     private let profileListView = ProfilesListView()
-    private let arrayOfProfiles = [ProfileModelProtocol]()
+    private var arrayOfProfiles = [ProfileModelProtocol]()
     private let userDefaults = UserDefaults.standard
 
     // MARK: - LifeCycle
     override func loadView() {
         view = profileListView
+        self.delegate = profileListView
     }
 
     override func viewDidLoad() {
@@ -45,6 +47,16 @@ class ProfilesListViewController: UIViewController {
     }
 
     private func getProfileList() {
+        arrayOfProfiles = userDefaults[.profilesArray] ?? [ProfileModelProtocol]()
+        for (index, value) in arrayOfProfiles.enumerated() {
+            if index == 0 {
+                delegate?.updateFirstView(with: value)
+            } else if index == 1 {
+                delegate?.updateSecondView(with: value)
+            } else if index == 2 {
+                delegate?.updateThirdView(with: value)
+            }
+        }
     }
 
     @objc

@@ -7,6 +7,12 @@
 
 import UIKit
 
+protocol ProfilesListViewControllerDelegate: AnyObject {
+    func updateFirstView(with data: ProfileModelProtocol)
+    func updateSecondView(with data: ProfileModelProtocol)
+    func updateThirdView(with data: ProfileModelProtocol)
+}
+
 class ProfilesListView: UIView {
     // MARK: - Properties
     // First hard view
@@ -115,7 +121,26 @@ class ProfilesListView: UIView {
         )
     }
 }
+// MARK: - Delegation
+extension ProfilesListView: ProfilesListViewControllerDelegate {
+    func updateFirstView(with data: ProfileModelProtocol) {
+        firstNameLabel.text = data.name
+        birthdayDescriptionLabel.text = data.birthDate
+        daysRemainingLabel.text = data.age
+    }
 
+    func updateSecondView(with data: ProfileModelProtocol) {
+        secondNameLabel.text = data.name
+        secondBirthdayDescriptionLabel.text = data.birthDate
+        daysRemainingLabel.text = data.age
+    }
+
+    func updateThirdView(with data: ProfileModelProtocol) {
+        thirdNameLabel.text = data.name
+        thirdBirthdayDescriptionLabel.text = data.birthDate
+        thirdDaysRemainingLabel.text = data.age
+    }
+}
 // MARK: - Constraints
 private extension ProfilesListView {
     private func setupConstraints() {

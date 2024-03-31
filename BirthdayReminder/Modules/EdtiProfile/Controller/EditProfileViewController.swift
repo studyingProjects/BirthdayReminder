@@ -9,6 +9,7 @@ import UIKit
 
 protocol EditProfileViewDelegate: AnyObject {
     func popViewController()
+    func addTapped()
     func presentInstAlert(_ alert: UIAlertController)
     func updateName(with name: String?)
     func updateBirthDate(with date: String?)
@@ -27,6 +28,7 @@ class EditProfileViewController: UIViewController {
 
     private let editProfileView = EditProfileView()
     private var profileModel: ProfileModelProtocol = ProfileModel()
+    private let userDefaults = UserDefaults.standard
 
     override func loadView() {
         view = editProfileView
@@ -74,5 +76,11 @@ extension EditProfileViewController: EditProfileViewDelegate {
 
     func updateInst(with inst: String?) {
         profileModel.inst = inst
+    }
+
+    func addTapped() {
+        var arrayOfProfiles = userDefaults[.profilesArray] ?? [ProfileModelProtocol]()
+        arrayOfProfiles.append(profileModel)
+        userDefaults[.profilesArray] = arrayOfProfiles
     }
 }

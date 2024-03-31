@@ -9,6 +9,7 @@ import UIKit
 
 protocol EditProfileNavigationBarDelegate: AnyObject {
     func popViewController()
+    func addTapped()
 }
 
 class EditProfileView: UIView, UINavigationBarDelegate {
@@ -198,9 +199,6 @@ extension EditProfileView: UITextFieldDelegate {
             return false
         }
 
-        // Setup default pickers rows
-        // $0.selectRow(0, inComponent: 0, animated: true)
-
         return true
     }
 
@@ -248,6 +246,10 @@ extension EditProfileView: EditProfileNavigationBarDelegate {
 
     func popViewController() {
         delegate?.popViewController()
+    }
+
+    func addTapped() {
+        delegate?.addTapped()
     }
 }
 // MARK: - UIPickerViewDelegate
