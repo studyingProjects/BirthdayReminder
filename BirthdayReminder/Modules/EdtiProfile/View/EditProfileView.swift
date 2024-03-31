@@ -206,9 +206,14 @@ extension EditProfileView: UITextFieldDelegate {
 
     func textFieldDidBeginEditing(_ textField: UITextField) {
         selectedTextFieldIndex = textFields.firstIndex(of: textField)
-        if (textField.text ?? "").isEmpty,
-           let pickerView = textField.inputView as? UIPickerView {
-            pickerView.delegate?.pickerView?(pickerView, didSelectRow: defaultCountOfRows, inComponent: defaultCountOfRows)
+        if (textField.text ?? "").isEmpty {
+            if let pickerView = textField.inputView as? UIPickerView {
+                pickerView.delegate?.pickerView?(pickerView, didSelectRow: defaultCountOfRows, inComponent: defaultCountOfRows)
+            }
+
+            if let datePicker = textField.inputView as? ToolBarDatePicker {
+                datePicker.toolBarDelegate?.dateValueChanged()
+            }
         }
     }
 
