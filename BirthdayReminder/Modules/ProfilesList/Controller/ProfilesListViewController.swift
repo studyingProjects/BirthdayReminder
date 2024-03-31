@@ -16,6 +16,8 @@ class ProfilesListViewController: UIViewController {
     weak var coordinator: Coordinator?
 
     private let profileListView = ProfilesListView()
+    private let arrayOfProfiles = [ProfileModelProtocol]()
+    private let userDefaults = UserDefaults.standard
 
     // MARK: - LifeCycle
     override func loadView() {
@@ -32,12 +34,17 @@ class ProfilesListViewController: UIViewController {
             target: self,
             action: #selector(addTapped)
         )
+
+        getProfileList()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         navigationController?.navigationBar.backgroundColor = .systemGray5
+    }
+
+    private func getProfileList() {
     }
 
     @objc

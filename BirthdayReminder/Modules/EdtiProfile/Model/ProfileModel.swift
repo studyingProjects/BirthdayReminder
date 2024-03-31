@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol ProfileModelProtocol {
+protocol ProfileModelProtocol: Codable {
     var name: String? { get set }
     var birthDate: String? { get set }
     var age: String? { get set }
